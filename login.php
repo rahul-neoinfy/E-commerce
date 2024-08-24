@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
         if ($row['usertype'] == 'admin') {
             $_SESSION['admin_name'] = $row['name'];      
             $_SESSION['admin_email'] = $row['email'];
-            header('Location: ./admin/admin_homepage.php');
+            header('Location: ./admin');
         } elseif ($row['usertype'] == 'user') {
 
             $_SESSION['username'] = $row['name'];
