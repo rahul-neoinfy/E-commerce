@@ -61,6 +61,10 @@ if (isset($_POST['submit'])) {
 
     $select = "SELECT * FROM users WHERE email = '$email' AND password = '$pass'";
 
+
+    // $select = $obj->getdatabyId('users', $data, 'id', $id);
+
+
     $result = $query->getDataByCustomQuerys($select);
 
     // if (mysqli_num_rows($result) > 0) {
@@ -70,13 +74,17 @@ if (isset($_POST['submit'])) {
 
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        $_SESSION['auth'] =true;
 
-        if ($row['user_type'] == 'admin') {
-            $_SESSION['admin_name'] = $row['name'];
-            header('Location: admin_page.php');
+        if ($row['usertype'] == 'admin') {
+            $_SESSION['admin_name'] = $row['name'];      
+            $_SESSION['admin_email'] = $row['email'];
+            header('Location: ./admin');
         } elseif ($row['usertype'] == 'user') {
+
             $_SESSION['username'] = $row['name'];
-            header('Location: user_page.php');
+            $_SESSION['useremail'] = $row['email'];
+            header('Location: ./user/user_homepage.php');
         }
     } else {
         $error[] = 'Incorrect email or password!';

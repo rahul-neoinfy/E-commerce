@@ -1,5 +1,7 @@
 <?php
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include 'config/db1.php';
 $query = new Query();
 // $conn = $query->connect();
@@ -86,6 +88,7 @@ if (isset($_POST['submit'])) {
         } else {
             $insertQuery = "INSERT INTO users (name, email, number, password, usertype) VALUES ('$name', '$email', '$number', '$pass', '$user_type')";
             if ($query->executeQuery($insertQuery)) {
+                $_SESSION['message'] = "Registered Successfully";
                 header('location:login.php');
                 exit;
             } else {
@@ -108,6 +111,8 @@ if (isset($_POST['submit'])) {
    <title>register form</title>
 
    <!-- custom css file link  -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -117,13 +122,19 @@ if (isset($_POST['submit'])) {
 
    <form action="" method="post">
       <h3>register now</h3>
-      <?php
-      if(isset($error)){
-         foreach($error as $error){
-            echo '<span class="error-msg">'.$error.'</span>';
-         };
-      };
-      ?>
+
+
+      <?php if(isset($_SESSION['message'])) { ?>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+         <strong>Hey!</strong> <?= $_SESSION['message']; ?>
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <?php unset($_SESSION['message']); } ?>
+      <?php if(isset($error)) { foreach($error as $error) { ?>
+         <span class="error-msg"><?= $error ?></span>
+      <?php }} ?>
+
+
       <input type="text" name="name" required placeholder="enter your name">
       <input type="email" name="email" required placeholder="enter your email">
       <input type="number" name="number" required placeholder="enter your number">
