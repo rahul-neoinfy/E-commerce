@@ -1,6 +1,8 @@
 
 <?php 
-session_start(); ?>
+session_start();
+// echo $_SESSION['usertype'];
+ ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -40,7 +42,7 @@ session_start(); ?>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
+            <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
           </ul>
         </li>
         <?php 
@@ -49,10 +51,10 @@ session_start(); ?>
          ?>
               
          <li class="nav-item">
-         <a class="nav-link" href="./index.php">Register</a>
+         <a class="nav-link" href="../index.php">Register</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="./login.php">Login</a>
+         <a class="nav-link" href="../login.php">Login</a>
        </li>
        <?php
         }

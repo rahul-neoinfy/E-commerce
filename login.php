@@ -1,6 +1,13 @@
 
 
 <?php
+session_start();
+
+if(isset($_SESSION['auth'])){
+    $_SESSION['message']="You are already Logged in";
+    header('Location: ./user/user_homepage.php');
+    exit();
+}
 
 @include 'config/db1.php';
 
@@ -79,11 +86,14 @@ if (isset($_POST['submit'])) {
         if ($row['usertype'] == 'admin') {
             $_SESSION['admin_name'] = $row['name'];      
             $_SESSION['admin_email'] = $row['email'];
+            $_SESSION['usertype']=$row['usertype'];
             header('Location: ./admin');
         } elseif ($row['usertype'] == 'user') {
 
             $_SESSION['username'] = $row['name'];
             $_SESSION['useremail'] = $row['email'];
+            $_SESSION['usertype']=$row['usertype'];
+            echo $_SESSION['usertype'];
             header('Location: ./user/user_homepage.php');
         }
     } else {
