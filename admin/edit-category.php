@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include('../middleware/adminMiddleware.php');
+// include('../middleware/adminMiddleware.php');
 include('includes/header.php');
 include('../config/db1.php');
 
@@ -40,7 +40,7 @@ if (isset($_POST['update_category_btn'])) {
     // Handle image upload
     $image = $_FILES['image']['name'];
     if ($image) {
-        $path = "uploads/";
+        $path = "../uploads/";
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
         $filename = time() . '.' . $image_ext;
 
@@ -139,7 +139,7 @@ if (isset($_POST['update_category_btn'])) {
                             <input type="file" name="image" id="image" class="form-control">
                             <br>
                             <?php if ($data['image']): ?>
-                                <img src="uploads/<?= htmlspecialchars($data['image']); ?>" alt="<?= htmlspecialchars($data['name']); ?>" width="100">
+                                <img src="../uploads/<?= htmlspecialchars($data['image']); ?>" alt="<?= htmlspecialchars($data['name']); ?>" width="100">
                             <?php endif; ?>
                         </div>
                         <div class="form-group">

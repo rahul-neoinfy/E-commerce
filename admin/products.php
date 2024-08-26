@@ -39,7 +39,7 @@ $products = $query->getData("products", "*");
                                         <td><?= $row['id']; ?></td>
                                         <td><?= $row['name']; ?></td>
                                         <td>
-                                            <img src="uploads/<?= $row['image']; ?>" alt="<?= $row['name']; ?>" width="50" height="50">
+                                            <img src="../uploads/<?= $row['image']; ?>" alt="<?= $row['name']; ?>" width="50" height="50">
                                         </td>
                                         <td><?= $row['status'] == '1' ? 'Visible' : 'Hidden'; ?></td>
                                         <td>
@@ -48,7 +48,7 @@ $products = $query->getData("products", "*");
                                         </td>
                                         <td>
  
-                  <button type="button" class="btn btn-sm btn-danger delete_product_btn" value="<?= $row['id'] ?>">Delete</button>
+                       <button type="button" class="btn btn-sm btn-danger delete_product_btn" value="<?= $row['id'] ?>">Delete</button>
                                     
                                         </td>
                                     </tr>

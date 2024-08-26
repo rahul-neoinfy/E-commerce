@@ -3,13 +3,10 @@ include('../middleware/adminMiddleware.php');
 include('../config/db1.php');
 $query = new Query();
 
-
 $categories = $query->getData("categories", "*");
 ?>
- 
 
-
- <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -35,18 +32,18 @@ $categories = $query->getData("categories", "*");
                                 while ($row = $categories->fetch_assoc()) {
                                     ?>
                                     <tr>
-                                        <td><?= $row['id']; ?></td>
-                                        <td><?= $row['name']; ?></td>
+                                        <td><?= htmlspecialchars($row['id']); ?></td>
+                                        <td><?= htmlspecialchars($row['name']); ?></td>
                                         <td>
-                                            <img src="uploads/<?= $row['image']; ?>" alt="<?= $row['name']; ?>" width="50" height="50">
+                                            <img src="../uploads/<?= htmlspecialchars($row['image']); ?>" alt="<?= htmlspecialchars($row['name']); ?>" width="50" height="50">
                                         </td>
                                         <td><?= $row['status'] == '1' ? 'Visible' : 'Hidden'; ?></td>
                                         <td>
-                                            <a href="edit-category.php?id=<?= $row['id']; ?>" class="btn btn-primary">Edit</a>
-                                            <form action="code.php" method="POST">
-               <input type="hidden" name="category_id" value="<?= $row['id']; ?>">
-                  <button class="btn btn-danger" name="delete_category_btn">Delete</button>
-                                   </form>
+                                            <a href="edit-category.php?id=<?= htmlspecialchars($row['id']); ?>" class="btn btn-primary">Edit</a>
+                                            <form action="code.php" method="POST" style="display:inline;">
+                                                <input type="hidden" name="category_id" value="<?= htmlspecialchars($row['id']); ?>">
+                                                <button class="btn btn-danger" name="delete_category_btn">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <?php
@@ -66,5 +63,6 @@ $categories = $query->getData("categories", "*");
             </div>
         </div>
     </div>
- </div>
+</div>
+
 <?php include('includes/footer.php'); ?>

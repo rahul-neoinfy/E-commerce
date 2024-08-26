@@ -114,5 +114,11 @@ class Query extends Database
         return $this->executeQuery($sql);
     }
 
+    public function getDataWithStatus($table, $fields)
+    {
+        $sql = "SELECT $fields FROM $table WHERE status = '0'";
+        $result = $this->connect()->query($sql);
+        return $result;
+    }
      
 }

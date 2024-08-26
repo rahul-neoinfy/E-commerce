@@ -17,7 +17,7 @@ if(isset($_POST['add_category_btn']))
     $image= $_FILES['image']['name'];
 
     // $image=$_FILES['image']['name'];
-    $path ="uploads/";
+    $path ="../uploads/";
 
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     $filename = time().'.'.$image_ext;

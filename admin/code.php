@@ -15,7 +15,7 @@ if (isset($_POST['add_category_btn'])) {
 
     // Handle file upload
     $image = $_FILES['image']['name'];
-    $path = "uploads/";
+    $path ="../uploads/";
 
     // Debugging: Check for upload errors
     if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
@@ -123,7 +123,7 @@ else if(isset($_POST['add_product_btn'])) {
 
     // Handle file upload
     $image = $_FILES['image']['name'];
-    $path = "uploads/";
+    $path ="../uploads/";
 
     // Debugging: Check for upload errors
     if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
@@ -137,7 +137,7 @@ else if(isset($_POST['add_product_btn'])) {
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     if (!in_array($image_ext, $allowed_ext)) {
         $_SESSION['message'] = "Invalid file type!";
-        header("Location: add-product.php");
+        header("Location: ./add-product.php");
         exit();
     }
 
@@ -184,7 +184,7 @@ else if(isset($_POST['add_product_btn'])) {
     }
 
     // Redirect back to the form page
-    header("Location: add-products.php");
+    header("Location: add-product.php");
     exit();
 }
 else if(isset($_POST['update_product_btn'])) {
@@ -204,7 +204,7 @@ else if(isset($_POST['update_product_btn'])) {
     $meta_keywords = $_POST['meta_keywords'];
 
     $image = $_FILES['image']['name'];
-    $path = "uploads/";
+    $path ="../uploads/";
 
     // Handle image upload
     if ($image != "") {
