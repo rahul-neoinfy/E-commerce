@@ -120,5 +120,29 @@ class Query extends Database
         $result = $this->connect()->query($sql);
         return $result;
     }
+
+    public function getSlugactive($table, $slug)
+    {
+        $sql = "SELECT * FROM $table WHERE slug = '$slug' AND status = '0' LIMIT 1";
+        $result = $this->connect()->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
+
+    public function getProductCategory($category_id) {
+        $sql = "SELECT * FROM products WHERE category_id = '$category_id' AND status = '0'";
+        $result = $this->connect()->query($sql);
+    
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
      
 }
+ 
