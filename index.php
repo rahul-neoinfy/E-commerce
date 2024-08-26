@@ -2,6 +2,14 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+session_start();
+
+if(isset($_SESSION['auth'])){
+    $_SESSION['message']="You are already Logged in";
+    header('Location: ../user_homepage.php');
+    exit();
+}
 include 'config/db1.php';
 $query = new Query();
 // $conn = $query->connect();

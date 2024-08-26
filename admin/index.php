@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php include('includes/header.php');
+include('../middleware/adminMiddleware.php');
+?>
 <div class="container-fluid py-4">
     <div class="row float-left">
         <div class="col-md-12">
@@ -6,8 +8,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="card mb-2">
-                            <!-- <div class="card mb-2"style="float:left;"> -->
+                        <div class="card mb-2"> 
 
                             <div class="card-header p-3 pt-2">
                                 <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
